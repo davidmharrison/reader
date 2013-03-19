@@ -1,0 +1,55 @@
+<head>
+  <title>reader</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<div class="well"></div>
+  			  {{>index}}
+		  </div>
+	  </div>
+	</div>
+</body>
+
+<template name="index">
+	<div class="row">
+		<div class="span3">
+  			{{>feeds}}
+		</div>
+		<div class="span9">
+			{{#if feed}}
+				{{>feed}}
+			{{else}}
+				<h1>Stories go here</h1>
+			{{/if}}
+		</div>
+	</div>
+</template>
+
+<template name="feeds">
+	<div class="well">
+		<ul class="nav nav-list">
+			{{#each feeds}}
+				<li class="feed"><a href="">{{title}} <div class="label storycount">{{stories.length}}</div></a></li>
+			{{/each}}
+		</ul>
+	</div>
+	<div class="input-append">
+	  <input name="url" id="url" type="text" placeholder="Feed URL">
+	  <button class="btn btn-primary addFeed">Add</button>
+	</div>
+</template>
+
+<template name="feed">
+	{{#with feed}}
+	{{#each stories}}
+	<h3><a href="{{link}}">{{title}}</a></h3>
+	<hr>
+	{{{description}}}
+	<hr>
+	{{/each}}
+	{{/with}}
+</template>
+
